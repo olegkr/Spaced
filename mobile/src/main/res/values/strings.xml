@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">Spaced</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="name_your_deck">Name your deck</string>
+    <string name="add_a_photo">Add a photo</string>
+    <string name="spaced_gallery">Spaced gallery</string>
+    <string name="phone_gallery">Phone gallery</string>
+    <string name="take_a_photo">Take a photo</string>
+
+    <string name="cancel">Cancel</string>
+    <string name="create">Create</string>
+</resources>
