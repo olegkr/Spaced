@@ -16,6 +16,7 @@ public class DbOpenHelper extends SQLiteOpenHelper {
         super(context, Globals.DB_NAME, factory, Globals.DATABASE_VERSION);
     }
 
+    
     @Override
     public void onCreate(SQLiteDatabase db) {
         final String CREATE_DB_CARD = "CREATE TABLE " + Globals.TABLE_CARDS + " ("
