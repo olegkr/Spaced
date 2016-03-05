@@ -1,6 +1,7 @@
 package fragments;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
@@ -12,7 +13,7 @@ import java.util.ArrayList;
 
 import adapters.MyCardsAdapter;
 import models.CardModel;
-import spaced.com.spaced.NewCardActivity;
+import spaced.com.spaced.NewDeckActivity;
 import spaced.com.spaced.R;
 import utils.LogUtil;
 
@@ -38,8 +39,6 @@ public class MyDecksFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         LogUtil.d("");
-
-        mCardsAdapter = new MyCardsAdapter(getActivity(), mCardList);
     }
 
     @Override
@@ -56,21 +55,41 @@ public class MyDecksFragment extends Fragment {
         LogUtil.d("");
 
         rootView = this.getView();
+
+        mCardsAdapter = new MyCardsAdapter(getActivity(), mCardList);
+
         flBtn = (FloatingActionButton) rootView.findViewById(R.id.fab);
         flBtn.show();
 
         flBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                Intent intent;
                 switch(view.getId()) {
                     case R.id.fab:
-                        Intent intent = new Intent(getActivity().getApplicationContext(), NewCardActivity.class);
+                        Intent intent = new Intent(getActivity().getApplicationContext(), NewDeckActivity.class);
                         startActivity(intent);
                         break;
                 }
             }
         });
     }
+
+
+    public static MyDecksFragment newInstance(Bundle bundle){
+        LogUtil.d("");
+
+        MyDecksFragment fragment = new MyDecksFragment();
+        if(bundle != null) {
+            int id = bundle.getInt("deck_id");
+            LogUtil.d("id: " + id);
+            String name = bundle.getString("deck_name");
+            LogUtil.d("name: " + name);
+            Bitmap image = bundle.getParcelable("deck_image");
+            LogUtil.d("image: " + image);
+        }
+        return fragment;
+    }
+
+
 
 }

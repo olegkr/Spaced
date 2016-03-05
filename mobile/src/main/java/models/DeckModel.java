@@ -1,7 +1,6 @@
 package models;
 
-import android.widget.ImageView;
-import android.widget.TextView;
+import android.graphics.Bitmap;
 
 /**
  * Created by Oleg on 03.03.2016.
@@ -9,58 +8,42 @@ import android.widget.TextView;
 public class DeckModel {
 
     private int mDeckID;
-    private int mCardID;
-    private ImageView mDeckImage;
-    private TextView mTvDeckName;
-    private TextView mTvCardQuantity;
+    private String mDeckName;
+    private Bitmap mDeckImage;
 
 
-    public DeckModel(int deckID, int cardID, ImageView image, TextView tvDeckName, TextView tvCardQuantity) {
-        this.mDeckID = deckID;
-        this.mCardID = cardID;
-        this.mDeckImage = image;
-        this.mTvDeckName = tvDeckName;
-        this.mTvCardQuantity = tvCardQuantity;
+    public DeckModel() {
+
     }
 
-    public int getIdDeck() {
+    public DeckModel(int deckID, String deckName, Bitmap deckImage) {
+        this.mDeckID = deckID;
+        this.mDeckName = deckName;
+        this.mDeckImage = deckImage;
+    }
+
+    public int getDeckID() {
         return mDeckID;
     }
 
-    public void setIdDeck(int deckID) {
+    public void setDeckID(int deckID) {
         this.mDeckID = deckID;
     }
 
-    public int getIdCard() {
-        return mCardID;
+    public String getDeckName() {
+        return mDeckName;
     }
 
-    public void setIdCard(int cardID) {
-        this.mCardID = cardID;
+    public void setCardName(String deckName) {
+        this.mDeckName = deckName;
     }
 
-    public ImageView getImage() {
+    public Bitmap getDeckImage() {
         return mDeckImage;
     }
 
-    public void setImage(ImageView image) {
-        this.mDeckImage = image;
-    }
-
-    public TextView getTvDesckName() {
-        return mTvDeckName;
-    }
-
-    public void setTvDesckName(TextView tvDeckName) {
-        this.mTvDeckName = tvDeckName;
-    }
-
-    public TextView getTvCardQuantity() {
-        return mTvCardQuantity;
-    }
-
-    public void setTvCardQuantity(TextView tvCardQuantity) {
-        this.mTvCardQuantity = tvCardQuantity;
+    public void setDeckImage(Bitmap deckImage) {
+        this.mDeckImage = deckImage;
     }
 
 }
