@@ -15,8 +15,10 @@ import android.widget.ListView;
 
 import java.util.ArrayList;
 
+
 import adapters.MyDesksAdapter;
 import models.DeckModel;
+
 import spaced.com.spaced.NewDeckActivity;
 import spaced.com.spaced.R;
 import utils.LogUtil;
@@ -50,8 +52,10 @@ public class MyDecksFragment extends Fragment implements AbsListView.OnScrollLis
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         LogUtil.d("");
+
 //        rootView = this.getView();
 //        contxt = rootView.getContext();
+
     }
 
     @Override
@@ -71,6 +75,7 @@ public class MyDecksFragment extends Fragment implements AbsListView.OnScrollLis
 
         rootView = this.getView();
 
+
         mListView = (ListView) rootView.findViewById(R.id.lstVw_my_desk);
         mListView.setFocusableInTouchMode(true);
         mListView.setOnScrollListener(this);
@@ -82,6 +87,7 @@ public class MyDecksFragment extends Fragment implements AbsListView.OnScrollLis
         mDecksAdapter = new MyDesksAdapter(getActivity(), mDeckList);
         mListView.setAdapter(mDecksAdapter);
 
+
         flBtn = (FloatingActionButton) rootView.findViewById(R.id.fab);
         flBtn.show();
 
@@ -89,6 +95,7 @@ public class MyDecksFragment extends Fragment implements AbsListView.OnScrollLis
             @Override
             public void onClick(View view) {
                 switch (view.getId()) {
+
                     case R.id.fab:
                         Intent intent = new Intent(getActivity().getApplicationContext(), NewDeckActivity.class);
                         startActivity(intent);
@@ -97,6 +104,7 @@ public class MyDecksFragment extends Fragment implements AbsListView.OnScrollLis
             }
         });
     }
+
 
 
     protected ArrayList<DeckModel> addDeck(DeckModel dm) {
@@ -114,6 +122,7 @@ public class MyDecksFragment extends Fragment implements AbsListView.OnScrollLis
         if(bundle != null) {
             int id = bundle.getInt("deck_id");
             LogUtil.d("id: " + id);
+
 
             String name = bundle.getString("deck_name");
             LogUtil.d("name: " + name);
@@ -141,6 +150,7 @@ public class MyDecksFragment extends Fragment implements AbsListView.OnScrollLis
     }
 
 
+
     @Override
     public void onScrollStateChanged(AbsListView view, int scrollState) {
 
@@ -150,4 +160,5 @@ public class MyDecksFragment extends Fragment implements AbsListView.OnScrollLis
     public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
 
     }
+
 }

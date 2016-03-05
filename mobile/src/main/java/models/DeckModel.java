@@ -13,6 +13,7 @@ public class DeckModel {
     private int mCardsQuantity;
 
 
+
     public DeckModel() {
 
     }
@@ -54,6 +55,8 @@ public class DeckModel {
 
     public void setCardsQuantity(int cardsQuantity) {
         this.mCardsQuantity = cardsQuantity;
+
     }
+
 
 }
