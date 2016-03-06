@@ -4,13 +4,15 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import java.util.ArrayList;
 
-import adapters.MyCardsAdapter;
+import adapters.MyDecksViewAdapter;
 import models.CardModel;
 import spaced.com.spaced.NewCardActivity;
 import spaced.com.spaced.R;
@@ -21,10 +23,12 @@ import utils.LogUtil;
  */
 public class MyDecksFragment extends Fragment {
 
-    private static final int ACTIVITY_ID = R.layout.decks_fragment;
+    private static final int LAYOUT_ID = R.layout.decks_fragment;
 
-    private MyCardsAdapter mCardsAdapter;
+    //private MyCardsAdapter mCardsAdapter;
     private ArrayList<CardModel> mCardList = null;
+    RecyclerView itemsRecyclerView;
+    MyDecksViewAdapter popularItemsViewAdapter;
 
     private View rootView;
     FloatingActionButton flBtn;
@@ -39,15 +43,22 @@ public class MyDecksFragment extends Fragment {
         super.onCreate(savedInstanceState);
         LogUtil.d("");
 
-        mCardsAdapter = new MyCardsAdapter(getActivity(), mCardList);
+        popularItemsViewAdapter = new MyDecksViewAdapter(getContext());
+        //mCardsAdapter = new MyCardsAdapter(getActivity(), mCardList);
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         LogUtil.d("");
 
-        // Inflate the layout for this fragment
-        return inflater.inflate(ACTIVITY_ID, container, false);
+        View view = inflater.inflate(LAYOUT_ID, container, false);
+
+        itemsRecyclerView = (RecyclerView) view.findViewById(R.id.itemsRecyclerView);
+        itemsRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        itemsRecyclerView.setAdapter(popularItemsViewAdapter);
+
+        return view;
+
     }
 
     @Override

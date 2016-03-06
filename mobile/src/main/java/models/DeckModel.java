@@ -1,7 +1,6 @@
 package models;
 
-import android.widget.ImageView;
-import android.widget.TextView;
+import java.util.ArrayList;
 
 /**
  * Created by Oleg on 03.03.2016.
@@ -9,58 +8,42 @@ import android.widget.TextView;
 public class DeckModel {
 
     private int mDeckID;
-    private int mCardID;
-    private ImageView mDeckImage;
-    private TextView mTvDeckName;
-    private TextView mTvCardQuantity;
+    private ArrayList<CardModel> mCards;
+    private String mDeckName;
+    private boolean isEditable;
 
-
-    public DeckModel(int deckID, int cardID, ImageView image, TextView tvDeckName, TextView tvCardQuantity) {
+    public DeckModel(int deckID, String deckName, boolean isEditable) {
+        mCards = new ArrayList<>();
         this.mDeckID = deckID;
-        this.mCardID = cardID;
-        this.mDeckImage = image;
-        this.mTvDeckName = tvDeckName;
-        this.mTvCardQuantity = tvCardQuantity;
+        this.isEditable = isEditable;
+        this.mDeckName = deckName;
     }
 
     public int getIdDeck() {
         return mDeckID;
     }
 
-    public void setIdDeck(int deckID) {
-        this.mDeckID = deckID;
+    public ArrayList<CardModel> getCards() {
+        return mCards;
     }
 
-    public int getIdCard() {
-        return mCardID;
+    public void setCards(ArrayList<CardModel> cards) {
+        this.mCards = cards;
     }
 
-    public void setIdCard(int cardID) {
-        this.mCardID = cardID;
+    public void addCard(CardModel card) {
+        this.mCards.add(card);
     }
 
-    public ImageView getImage() {
-        return mDeckImage;
+    public int getCardsQuantity() {
+        return mCards.size();
     }
 
-    public void setImage(ImageView image) {
-        this.mDeckImage = image;
+    public String getmDeckName() {
+        return mDeckName;
     }
 
-    public TextView getTvDesckName() {
-        return mTvDeckName;
+    public boolean isEditable() {
+        return isEditable;
     }
-
-    public void setTvDesckName(TextView tvDeckName) {
-        this.mTvDeckName = tvDeckName;
-    }
-
-    public TextView getTvCardQuantity() {
-        return mTvCardQuantity;
-    }
-
-    public void setTvCardQuantity(TextView tvCardQuantity) {
-        this.mTvCardQuantity = tvCardQuantity;
-    }
-
 }
