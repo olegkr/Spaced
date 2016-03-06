@@ -1,6 +1,6 @@
 package models;
 
-import java.util.ArrayList;
+import android.graphics.Bitmap;
 
 /**
  * Created by Oleg on 03.03.2016.
@@ -8,42 +8,55 @@ import java.util.ArrayList;
 public class DeckModel {
 
     private int mDeckID;
-    private ArrayList<CardModel> mCards;
     private String mDeckName;
-    private boolean isEditable;
+    private Bitmap mDeckImage;
+    private int mCardsQuantity;
 
-    public DeckModel(int deckID, String deckName, boolean isEditable) {
-        mCards = new ArrayList<>();
-        this.mDeckID = deckID;
-        this.isEditable = isEditable;
-        this.mDeckName = deckName;
+
+
+    public DeckModel() {
+
     }
 
-    public int getIdDeck() {
+    public DeckModel(int deckID, String deckName, Bitmap deckImage, int cardsQuantity) {
+        this.mDeckID = deckID;
+        this.mDeckName = deckName;
+        this.mDeckImage = deckImage;
+        this.mCardsQuantity = cardsQuantity;
+    }
+
+    public int getDeckID() {
         return mDeckID;
     }
 
-    public ArrayList<CardModel> getCards() {
-        return mCards;
+    public void setDeckID(int deckID) {
+        this.mDeckID = deckID;
     }
 
-    public void setCards(ArrayList<CardModel> cards) {
-        this.mCards = cards;
-    }
-
-    public void addCard(CardModel card) {
-        this.mCards.add(card);
-    }
-
-    public int getCardsQuantity() {
-        return mCards.size();
-    }
-
-    public String getmDeckName() {
+    public String getDeckName() {
         return mDeckName;
     }
 
-    public boolean isEditable() {
-        return isEditable;
+    public void setCardName(String deckName) {
+        this.mDeckName = deckName;
     }
+
+    public Bitmap getDeckImage() {
+        return mDeckImage;
+    }
+
+    public void setDeckImage(Bitmap deckImage) {
+        this.mDeckImage = deckImage;
+    }
+
+    public int getCardsQuantity() {
+        return mCardsQuantity;
+    }
+
+    public void setCardsQuantity(int cardsQuantity) {
+        this.mCardsQuantity = cardsQuantity;
+
+    }
+
+
 }
