@@ -36,7 +36,7 @@ public class PopularDecksViewAdapter extends RecyclerView.Adapter<PopularDecksVi
         }
 
         public void bindItem(DeckModel item) {
-            mTitleLabel.setText(item.getmDeckName());
+            mTitleLabel.setText(item.getDeckName());
             mCountLabel.setText(String.valueOf(item.getCardsQuantity()));
         }
     }

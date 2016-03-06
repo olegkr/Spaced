@@ -36,7 +36,7 @@ public class MyDecksViewAdapter extends RecyclerView.Adapter<MyDecksViewAdapter.
         }
 
         public void bindItem(DeckModel item) {
-            mTitleLabel.setText(item.getmDeckName());
+            mTitleLabel.setText(item.getDeckName());
             mCountLabel.setText(String.valueOf(item.getCardsQuantity()));
         }
     }

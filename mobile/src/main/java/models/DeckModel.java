@@ -2,6 +2,8 @@ package models;
 
 import android.graphics.Bitmap;
 
+import java.util.ArrayList;
+
 /**
  * Created by Oleg on 03.03.2016.
  */
@@ -10,19 +12,12 @@ public class DeckModel {
     private int mDeckID;
     private String mDeckName;
     private Bitmap mDeckImage;
-    private int mCardsQuantity;
+    private ArrayList<CardModel> mCards = new ArrayList<>();
 
-
-
-    public DeckModel() {
-
-    }
-
-    public DeckModel(int deckID, String deckName, Bitmap deckImage, int cardsQuantity) {
+    public DeckModel(int deckID, String deckName, Bitmap deckImage) {
         this.mDeckID = deckID;
         this.mDeckName = deckName;
         this.mDeckImage = deckImage;
-        this.mCardsQuantity = cardsQuantity;
     }
 
     public int getDeckID() {
@@ -37,7 +32,7 @@ public class DeckModel {
         return mDeckName;
     }
 
-    public void setCardName(String deckName) {
+    public void setDeckName(String deckName) {
         this.mDeckName = deckName;
     }
 
@@ -50,13 +45,14 @@ public class DeckModel {
     }
 
     public int getCardsQuantity() {
-        return mCardsQuantity;
+        return mCards.size();
     }
 
-    public void setCardsQuantity(int cardsQuantity) {
-        this.mCardsQuantity = cardsQuantity;
-
+    public ArrayList<CardModel> getmCards() {
+        return mCards;
     }
 
-
+    public void setCards(ArrayList<CardModel> mCards) {
+        this.mCards = mCards;
+    }
 }

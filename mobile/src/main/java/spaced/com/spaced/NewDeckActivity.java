@@ -93,10 +93,7 @@ public class NewDeckActivity extends Activity implements View.OnClickListener{
             case R.id.btn_create_new_deck:{
                 mDeckName = mEtDeckName.getText().toString();
 
-                DeckModel dm = new DeckModel();
-                dm.setDeckID(0);
-                dm.setCardName(mDeckName);
-                dm.setDeckImage(mDeckBtmp);
+                DeckModel dm = new DeckModel(0, mDeckName, mDeckBtmp);
 
                 Bundle bundle = new Bundle();
                 bundle.putInt("deck_id", 0);  LogUtil.d("deck_id: " + 0);

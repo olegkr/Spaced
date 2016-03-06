@@ -19,7 +19,7 @@ import utils.LogUtil;
 
 public class PopularDecksFragment extends Fragment {
 
-    private static final int LAYOUT_ID = R.layout.decks_fragment;
+    private static final int LAYOUT_ID = R.layout.popular_decks_fragment;
     private View rootView;
     FloatingActionButton flBtn;
     RecyclerView itemsRecyclerView;
