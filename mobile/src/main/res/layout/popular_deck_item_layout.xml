@@ -1,22 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:padding="4dp"
     android:orientation="horizontal">
 
-    <LinearLayout
-        android:orientation="vertical"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
-
-        <ImageView
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:src="@drawable/common_ic_googleplayservices"
-            android:id="@+id/imVw_deck" />
-    </LinearLayout>
+    <ImageView
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_alignParentLeft="true"
+        android:src="@drawable/common_ic_googleplayservices"
+        android:id="@+id/imVw_deck"
+        android:contentDescription="@string/preview_content_description" />
 
     <LinearLayout
+        android:layout_toRightOf="@+id/imVw_deck"
+        android:layout_alignParentRight="true"
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="100dp">
@@ -27,45 +26,43 @@
             android:layout_height="match_parent"
             android:layout_weight="1">
 
-            <LinearLayout
-                android:orientation="vertical"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="2">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="New Text"
+                android:textSize="16sp"
+                android:gravity="center_vertical"
+                android:textStyle="bold"
+                android:id="@+id/tVw_deck_name" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="New Text"
-                    android:id="@+id/tVw_deck_name" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="New Text"
-                    android:id="@+id/tVw_deck_card_quantity" />
-            </LinearLayout>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingTop="10dp"
+                android:gravity="center_vertical"
+                android:textSize="14sp"
+                android:text="New Text"
+                android:id="@+id/tVw_deck_card_quantity" />
 
         </LinearLayout>
 
         <LinearLayout
             android:orientation="vertical"
-            android:layout_width="wrap_content"
+            android:paddingRight="10dp"
+            android:layout_width="50dp"
             android:layout_height="match_parent">
 
-            <Button
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:text="New Button"
-                android:id="@+id/btn_deck_download"
-                android:layout_gravity="top|center" />
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@android:drawable/ic_menu_add"/>
 
-            <Button
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:text="New Button"
-                android:id="@+id/btn_deck_view"
-                android:layout_gravity="bottom|center" />
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingTop="25dp"
+                android:src="@android:drawable/ic_menu_help"/>
+
         </LinearLayout>
     </LinearLayout>
-</LinearLayout>
+</RelativeLayout>

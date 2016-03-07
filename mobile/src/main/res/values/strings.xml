@@ -7,7 +7,9 @@
     <string name="spaced_gallery">Spaced gallery</string>
     <string name="phone_gallery">Phone gallery</string>
     <string name="take_a_photo">Take a photo</string>
+    <string name="cards_num">Cards</string>
 
     <string name="cancel">Cancel</string>
     <string name="create">Create</string>
+    <string name="preview_content_description">preview</string>
 </resources>

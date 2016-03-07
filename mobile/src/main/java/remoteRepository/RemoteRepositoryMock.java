@@ -10,10 +10,10 @@ import models.DeckModel;
  */
 public class RemoteRepositoryMock extends RemoteRepositoryAbstract {
 
-    private static final String SPANISH_FOR_BEGINNERS = "Spanish for beginners";
-    private static final String SPANISH_FOR_ADVANCED = "Spanish for advanced";
-    private static final String ISRAEL_IMPORTANT_DATES = "Israel important dates";
-    private static final String EUROPE_CAPITAL_CITIES = "Europe least known capitals";
+    private static final String SPANISH_FOR_BEGINNERS = "Spanish for Beginners";
+    private static final String SPANISH_FOR_ADVANCED = "Spanish for Advanced";
+    private static final String ISRAEL_IMPORTANT_DATES = "Israel Important Dates";
+    private static final String EUROPE_CAPITAL_CITIES = "Europe Least Known Capitals";
     private static final String TBD1 = "TBD1";
     private static final String TBD2 = "TBD2";
     private static final String TBD3 = "TBD3";
