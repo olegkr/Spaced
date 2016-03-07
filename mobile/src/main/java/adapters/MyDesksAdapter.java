@@ -40,7 +40,7 @@ public class MyDesksAdapter extends ArrayAdapter<DeckModel> implements View.OnCl
 
 
     public MyDesksAdapter(Activity contxt, ArrayList<DeckModel> decksList) {
-        super(contxt, R.layout.my_desk_item_layout, decksList);
+        super(contxt, R.layout.popular_deck_item_layout, decksList);
         this.mContext = contxt;
         this.mDecksList = decksList;
 
@@ -113,7 +113,7 @@ public class MyDesksAdapter extends ArrayAdapter<DeckModel> implements View.OnCl
 
         iv_deck_image.setTag(insertDm);
         tv_deck_name.setTag(insertDm);
-        tv_deck_card_qnt.setTag(insertDm);
+        tv_deck_card_qnt.setTag(insertDm + " " + getContext().getResources().getString(R.string.cards_num));
 
         iv_deck_image.setImageBitmap(bitmap);
         tv_deck_name.setText(deck_name);
