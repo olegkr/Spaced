@@ -1,6 +1,7 @@
 package adapters;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
@@ -19,6 +20,7 @@ import java.util.ArrayList;
 
 import db.DbOpenHelper;
 import models.DeckModel;
+import spaced.com.spaced.LearningActivity;
 import spaced.com.spaced.R;
 import utils.Globals;
 
@@ -68,7 +70,7 @@ public class MyDesksAdapter extends ArrayAdapter<DeckModel> implements View.OnCl
     @Override
     public View getView(final int position, View convertView,  ViewGroup parent) {
 
-        DeckModel insertDm = this.getItem(position);
+        final DeckModel insertDm = this.getItem(position);
 
         final ImageView iv_deck_image;
         final TextView tv_deck_name;
@@ -86,6 +88,16 @@ public class MyDesksAdapter extends ArrayAdapter<DeckModel> implements View.OnCl
             iv_deck_image = (ImageView) convertView.findViewById(R.id.imVw_deck);
             tv_deck_name = (TextView) convertView.findViewById(R.id.tVw_deck_name);
             tv_deck_card_qnt = (TextView) convertView.findViewById(R.id.tVw_deck_card_quantity);
+
+            View playButton = convertView.findViewById(R.id.playButton);
+            playButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(v.getContext(), LearningActivity.class);
+                    intent.putExtra(LearningActivity.DECK_ID, insertDm.getDeckID());
+                    v.getContext().startActivity(intent);
+                }
+            });
 
 
 //            deck_delete = (Button)convertView.findViewById(R.id.btn_deck_delete);

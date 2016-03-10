@@ -11,7 +11,6 @@ import java.util.ArrayList;
 
 import models.DeckModel;
 import models.DecksManager;
-import remoteRepository.LocalRepositoryMock;
 import spaced.com.spaced.R;
 
 /**
@@ -29,16 +28,19 @@ public class MyDecksViewAdapter extends RecyclerView.Adapter<MyDecksViewAdapter.
     public class CustomViewHolder extends RecyclerView.ViewHolder {
         public TextView mTitleLabel;
         public TextView mCountLabel;
+        public View mPlayButton;
 
         public CustomViewHolder(View v) {
             super(v);
             mTitleLabel = (TextView)v.findViewById(R.id.tVw_deck_name);
             mCountLabel = (TextView)v.findViewById(R.id.tVw_deck_card_quantity);
+
         }
 
-        public void bindItem(DeckModel item) {
+        public void bindItem(final DeckModel item) {
             mTitleLabel.setText(item.getDeckName());
             mCountLabel.setText(String.valueOf(item.getCardsQuantity()));
+
         }
     }
 
