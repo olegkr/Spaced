@@ -13,6 +13,7 @@ public class DecksManager {
     private static DecksManager instance;
     private ArrayList<DeckModel> mRemoteDecks;
     private ArrayList<DeckModel> mLocalDecks;
+    private dataChangedListener listener;
 
     private DecksManager() {
         mRemoteDecks = new RemoteRepositoryMock().GetAllDecks();
@@ -26,11 +27,26 @@ public class DecksManager {
         return instance;
     }
 
+    public void notifyListener() {
+        if(listener != null) {
+            listener.notifyChange();
+        }
+    }
+
+    public void registerListener(dataChangedListener dataChangedListener) {
+        this.listener = dataChangedListener;
+
+    }
+
     public ArrayList<DeckModel> getRemoteDecks(){
         return mRemoteDecks;
     }
 
     public ArrayList<DeckModel> getLocalDecks(){
         return mLocalDecks;
+    }
+
+    public interface dataChangedListener{
+        void notifyChange();
     }
 }

@@ -55,13 +55,15 @@
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@android:drawable/ic_menu_add"/>
+                android:src="@android:drawable/ic_menu_add"
+                android:id="@+id/imVw_add" />
 
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingTop="25dp"
-                android:src="@android:drawable/ic_menu_help"/>
+                android:src="@android:drawable/ic_menu_help"
+                android:id="@+id/imVw_what" />
 
         </LinearLayout>
     </LinearLayout>

@@ -20,6 +20,8 @@ import java.util.ArrayList;
 
 import db.DbOpenHelper;
 import models.DeckModel;
+import models.DecksManager;
+import models.DecksManager.dataChangedListener;
 import spaced.com.spaced.LearningActivity;
 import spaced.com.spaced.R;
 import utils.Globals;
@@ -27,7 +29,7 @@ import utils.Globals;
 /**
  * Created by Oleg on 04.03.2016.
  */
-public class MyDesksAdapter extends ArrayAdapter<DeckModel> implements View.OnClickListener{
+public class MyDesksAdapter extends ArrayAdapter<DeckModel> implements View.OnClickListener, dataChangedListener {
 
     private static Cursor cursor = null;
     private SQLiteDatabase database = null;
@@ -46,6 +48,7 @@ public class MyDesksAdapter extends ArrayAdapter<DeckModel> implements View.OnCl
         super(contxt, R.layout.popular_deck_item_layout, decksList);
         this.mContext = contxt;
         this.mDecksList = decksList;
+        DecksManager.getInstance().registerListener(this);
 
 //        init();
 
@@ -142,6 +145,11 @@ public class MyDesksAdapter extends ArrayAdapter<DeckModel> implements View.OnCl
     @Override
     public void onClick(View v) {
 
+    }
+
+    @Override
+    public void notifyChange() {
+        notifyDataSetChanged();
     }
 
 

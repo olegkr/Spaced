@@ -1,21 +1,24 @@
 package spaced.com.spaced;
 
 import android.app.Activity;
+import android.content.ContentResolver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 
-import com.squareup.picasso.Picasso;
-
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 
-import adapters.CropSquareTransformation;
 import fragments.MyDecksFragment;
 import utils.LogUtil;
 
@@ -97,10 +100,13 @@ public class NewDeckActivity extends Activity implements View.OnClickListener{
 //                DeckModel dm = new DeckModel(0, mDeckName, mDeckBtmp);
 //                DeckModel dm = new DeckModel();
 
+//                mIvw.setImageBitmap(mDeckBtmp);
+
                 Bundle bundle = new Bundle();
                 bundle.putInt("deck_id", 0);  LogUtil.d("deck_id: " + 0);
                 bundle.putString("deck_name", mDeckName);  LogUtil.d("mDeckName: " + mDeckName);
                 bundle.putParcelable("deck_image", mDeckBtmp);  LogUtil.d("deck_image: " + mDeckBtmp);
+                bundle.putInt("deck_count", 0);  LogUtil.d("deck_count: ");
 
                 MyDecksFragment fragment = new MyDecksFragment();
                 fragment.newInstance(bundle);
@@ -125,14 +131,19 @@ public class NewDeckActivity extends Activity implements View.OnClickListener{
                 }
                 stream = getContentResolver().openInputStream(data.getData());
                 mDeckBtmp = BitmapFactory.decodeStream(stream);
-
+//                mIvw.setImageBitmap(mDeckBtmp);
                 // из ресурсов
-                Picasso.with(this)
-                        .load(mDeckBtmp.getGenerationId())
-                        .transform(new CropSquareTransformation())
-                        .into(mIvw);
+//                Picasso.with(this)
+//                        .load(mDeckBtmp.getGenerationId())
+//                        .transform(new CropSquareTransformation())
+//                        .into(mIvw);
 
-                mIvw.setImageBitmap(mDeckBtmp);
+
+                Uri uri = Uri.parse(Environment.getExternalStorageDirectory().getPath());
+                Bitmap bit = decodeSampledBitmapFromResource(getApplicationContext(), uri, 100, 100);
+                mIvw.setImageBitmap(bit);
+
+//                mIvw.setImageBitmap(mDeckBtmp);
 
                 LogUtil.d("mDeckBtmp: " + mDeckBtmp);
             } catch (Exception e) {
@@ -145,6 +156,60 @@ public class NewDeckActivity extends Activity implements View.OnClickListener{
                     e.printStackTrace();
                 }
         }
+    }
+
+    public static int calculateInSampleSize(
+            BitmapFactory.Options options, int reqWidth, int reqHeight) {
+        // Raw height and width of image
+        final int height = options.outHeight;
+        final int width = options.outWidth;
+        int inSampleSize = 1;
+
+        if (height > reqHeight || width > reqWidth) {
+
+            // Calculate ratios of height and width to requested height and width
+            final int heightRatio = Math.round((float) height / (float) reqHeight);
+            final int widthRatio = Math.round((float) width / (float) reqWidth);
+
+            // Choose the smallest ratio as inSampleSize value, this will guarantee
+            // a final image with both dimensions larger than or equal to the
+            // requested height and width.
+            inSampleSize = heightRatio < widthRatio ? heightRatio : widthRatio;
+        }
+
+        return inSampleSize;
+    }
+
+    public static Bitmap decodeSampledBitmapFromResource(Context context, Uri uri, int reqWidth, int reqHeight)
+            throws FileNotFoundException {
+        ContentResolver contentResolver = context.getContentResolver();
+        InputStream inputStream = contentResolver.openInputStream(uri);
+        // First decode with inJustDecodeBounds=true to check dimensions
+        final BitmapFactory.Options options = new BitmapFactory.Options();
+        options.inJustDecodeBounds = true;
+        BitmapFactory.decodeStream(inputStream, null, options);
+
+        // Calculate inSampleSize
+        options.inSampleSize = calculateInSampleSize(options, reqWidth, reqHeight);
+        // Decode bitmap with inSampleSize set
+        options.inJustDecodeBounds = false;
+        inputStream = contentResolver.openInputStream(uri);
+        return BitmapFactory.decodeStream(inputStream, null, options);
+    }
+
+    public static Bitmap decodeSampledBitmapFromResource(Resources res, int resId, int reqWidth, int reqHeight) {
+
+        // First decode with inJustDecodeBounds=true to check dimensions
+        final BitmapFactory.Options options = new BitmapFactory.Options();
+        options.inJustDecodeBounds = true;
+        BitmapFactory.decodeResource(res, resId, options);
+
+        // Calculate inSampleSize
+        options.inSampleSize = calculateInSampleSize(options, reqWidth, reqHeight);
+
+        // Decode bitmap with inSampleSize set
+        options.inJustDecodeBounds = false;
+        return BitmapFactory.decodeResource(res, resId, options);
     }
 
 }

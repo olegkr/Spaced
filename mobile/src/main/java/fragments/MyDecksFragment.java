@@ -40,8 +40,6 @@ public class MyDecksFragment extends Fragment implements AbsListView.OnScrollLis
     DeckModel mDeckModel;
     static ListView mListView;
 
-
-
     public MyDecksFragment() {
         // Required empty public constructor
     }
@@ -102,7 +100,7 @@ public class MyDecksFragment extends Fragment implements AbsListView.OnScrollLis
         });
     }
 
-    protected ArrayList<DeckModel> addDeck(DeckModel dm) {
+    public ArrayList<DeckModel> addDeck(DeckModel dm) {
         ArrayList<DeckModel> localDecks = DecksManager.getInstance().getLocalDecks();
         localDecks.add(dm);
         LogUtil.d("dm: " + dm);
@@ -110,7 +108,14 @@ public class MyDecksFragment extends Fragment implements AbsListView.OnScrollLis
         return localDecks;
     }
 
-    public  MyDecksFragment newInstance(Bundle bundle){
+    @Override
+    public void onResume() {
+        super.onResume();
+
+
+    }
+
+    public MyDecksFragment newInstance(Bundle bundle){
         LogUtil.d("");
 
         MyDecksFragment fragment = new MyDecksFragment();
