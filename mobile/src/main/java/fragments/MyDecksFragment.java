@@ -17,6 +17,7 @@ import java.util.ArrayList;
 
 import adapters.MyDesksAdapter;
 import models.DeckModel;
+import models.DecksManager;
 import spaced.com.spaced.NewDeckActivity;
 import spaced.com.spaced.R;
 import utils.LogUtil;
@@ -27,7 +28,6 @@ import utils.LogUtil;
 public class MyDecksFragment extends Fragment implements AbsListView.OnScrollListener{
 
     private static final int ACTIVITY_ID = R.layout.decks_fragment;
-
 
     Context contxt;
     static Activity activity;
@@ -73,12 +73,11 @@ public class MyDecksFragment extends Fragment implements AbsListView.OnScrollLis
 
         rootView = this.getView();
 
-
         mListView = (ListView) rootView.findViewById(R.id.lstVw_my_desk);
         mListView.setFocusableInTouchMode(true);
         mListView.setOnScrollListener(this);
 
-        mDeckList = new ArrayList<>();
+        mDeckList = DecksManager.getInstance().getLocalDecks();
 //        addDeck(mDeckModel);
         LogUtil.d("mDeckList: " + mDeckList);
 
@@ -103,15 +102,13 @@ public class MyDecksFragment extends Fragment implements AbsListView.OnScrollLis
         });
     }
 
-
-
     protected ArrayList<DeckModel> addDeck(DeckModel dm) {
-        mDeckList.add(dm);
+        ArrayList<DeckModel> localDecks = DecksManager.getInstance().getLocalDecks();
+        localDecks.add(dm);
         LogUtil.d("dm: " + dm);
 
-        return mDeckList;
+        return localDecks;
     }
-
 
     public  MyDecksFragment newInstance(Bundle bundle){
         LogUtil.d("");
@@ -144,8 +141,6 @@ public class MyDecksFragment extends Fragment implements AbsListView.OnScrollLis
         }
         return fragment;
     }
-
-
 
     @Override
     public void onScrollStateChanged(AbsListView view, int scrollState) {

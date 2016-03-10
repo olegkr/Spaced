@@ -10,7 +10,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 import models.DeckModel;
-import remoteRepository.RemoteRepositoryMock;
+import models.DecksManager;
 import spaced.com.spaced.R;
 
 /**
@@ -22,7 +22,7 @@ public class PopularDecksViewAdapter extends RecyclerView.Adapter<PopularDecksVi
 
     public PopularDecksViewAdapter(Context context) {
         this.context = context;
-        data = new RemoteRepositoryMock().GetAllDecks();
+        data = DecksManager.getInstance().getRemoteDecks();
     }
 
     public class CustomViewHolder extends RecyclerView.ViewHolder {
@@ -44,6 +44,14 @@ public class PopularDecksViewAdapter extends RecyclerView.Adapter<PopularDecksVi
     @Override
     public CustomViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.popular_deck_item_layout, null, false);
+//        view.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+////                Intent intent = new Intent(this, CardsListActivity.class);
+////                intent.putExtra(EXTRA_MESSAGE, message);
+////                startActivity(intent);
+//            }
+//        });
         return new CustomViewHolder(view);
     }
 

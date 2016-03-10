@@ -9,42 +9,47 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
+import models.CardModel;
 import models.DeckModel;
 import models.DecksManager;
-import remoteRepository.LocalRepositoryMock;
 import spaced.com.spaced.R;
 
 /**
  * Created by Ilya on 6/3/2016.
  */
-public class MyDecksViewAdapter extends RecyclerView.Adapter<MyDecksViewAdapter.CustomViewHolder> {
+public class CardsListViewAdapter extends RecyclerView.Adapter<CardsListViewAdapter.CustomViewHolder> {
     private Context context;
-    private ArrayList<DeckModel> data;
+    private ArrayList<CardModel> data;
+    private DeckModel mDeck;
 
-    public MyDecksViewAdapter(Context context) {
+    public CardsListViewAdapter(Context context, int deckID) {
         this.context = context;
-        data = DecksManager.getInstance().getLocalDecks();
+        ArrayList<DeckModel> decks = DecksManager.getInstance().getLocalDecks();
+        for (DeckModel deck : decks) {
+            if (deck.getDeckID() == deckID) {
+                mDeck = deck;
+                data = deck.getmCards();
+                break;
+            }
+        }
     }
 
     public class CustomViewHolder extends RecyclerView.ViewHolder {
-        public TextView mTitleLabel;
-        public TextView mCountLabel;
+        public TextView mQuestionTextView;
 
         public CustomViewHolder(View v) {
             super(v);
-            mTitleLabel = (TextView)v.findViewById(R.id.tVw_deck_name);
-            mCountLabel = (TextView)v.findViewById(R.id.tVw_deck_card_quantity);
+            mQuestionTextView = (TextView)v.findViewById(R.id.questionTextView);
         }
 
-        public void bindItem(DeckModel item) {
-            mTitleLabel.setText(item.getDeckName());
-            mCountLabel.setText(String.valueOf(item.getCardsQuantity()));
+        public void bindItem(CardModel item) {
+            mQuestionTextView.setText(item.getCardQuestion());
         }
     }
 
     @Override
     public CustomViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.popular_deck_item_layout, null, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_item_layout, null, false);
         return new CustomViewHolder(view);
     }
 
