@@ -15,10 +15,8 @@ import android.widget.ListView;
 
 import java.util.ArrayList;
 
-
 import adapters.MyDesksAdapter;
 import models.DeckModel;
-
 import spaced.com.spaced.NewDeckActivity;
 import spaced.com.spaced.R;
 import utils.LogUtil;

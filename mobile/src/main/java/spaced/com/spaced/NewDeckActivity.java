@@ -10,12 +10,13 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 
-import java.io.FileNotFoundException;
+import com.squareup.picasso.Picasso;
+
 import java.io.IOException;
 import java.io.InputStream;
 
+import adapters.CropSquareTransformation;
 import fragments.MyDecksFragment;
-import models.DeckModel;
 import utils.LogUtil;
 
 /**
@@ -93,7 +94,8 @@ public class NewDeckActivity extends Activity implements View.OnClickListener{
             case R.id.btn_create_new_deck:{
                 mDeckName = mEtDeckName.getText().toString();
 
-                DeckModel dm = new DeckModel(0, mDeckName, mDeckBtmp);
+//                DeckModel dm = new DeckModel(0, mDeckName, mDeckBtmp);
+//                DeckModel dm = new DeckModel();
 
                 Bundle bundle = new Bundle();
                 bundle.putInt("deck_id", 0);  LogUtil.d("deck_id: " + 0);
@@ -104,7 +106,7 @@ public class NewDeckActivity extends Activity implements View.OnClickListener{
                 fragment.newInstance(bundle);
                 finish();
 
-                break;
+                break; 
             }
 
             default:
@@ -124,9 +126,16 @@ public class NewDeckActivity extends Activity implements View.OnClickListener{
                 stream = getContentResolver().openInputStream(data.getData());
                 mDeckBtmp = BitmapFactory.decodeStream(stream);
 
+                // из ресурсов
+                Picasso.with(this)
+                        .load(mDeckBtmp.getGenerationId())
+                        .transform(new CropSquareTransformation())
+                        .into(mIvw);
+
                 mIvw.setImageBitmap(mDeckBtmp);
+
                 LogUtil.d("mDeckBtmp: " + mDeckBtmp);
-            } catch (FileNotFoundException e) {
+            } catch (Exception e) {
                 e.printStackTrace();
             } finally {
             if (stream != null)

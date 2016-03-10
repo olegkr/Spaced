@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -73,6 +74,8 @@ public class MyDesksAdapter extends ArrayAdapter<DeckModel> implements View.OnCl
         final TextView tv_deck_name;
         final TextView tv_deck_card_qnt;
 
+        final LinearLayout ll_insert;
+
         final Button deck_delete;
         final Button deck_edit;
         final Button deck_enter;
@@ -83,6 +86,7 @@ public class MyDesksAdapter extends ArrayAdapter<DeckModel> implements View.OnCl
             iv_deck_image = (ImageView) convertView.findViewById(R.id.imVw_deck);
             tv_deck_name = (TextView) convertView.findViewById(R.id.tVw_deck_name);
             tv_deck_card_qnt = (TextView) convertView.findViewById(R.id.tVw_deck_card_quantity);
+
 
 //            deck_delete = (Button)convertView.findViewById(R.id.btn_deck_delete);
 //            deck_edit = (Button)convertView.findViewById(R.id.btn_deck_edit);
