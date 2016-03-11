@@ -16,6 +16,9 @@ public class RemoteRepositoryMock extends RemoteRepositoryAbstract {
     private static final String SPANISH_FOR_ADVANCED = "Spanish for Advanced";
     private static final String ISRAEL_IMPORTANT_DATES = "Israel Important Dates";
     private static final String EUROPE_CAPITAL_CITIES = "Europe Least Known Capitals";
+    private static final String PSYCHOMETRIC_TEST = "psychometric test";
+    private static final String SOLAR_SYSTEM = "Solar System";
+    private static final String CLASSIC_COMPOSERS = "Classic composers";
     private static final String TBD1 = "TBD1";
     private static final String TBD2 = "TBD2";
     private static final String TBD3 = "TBD3";
@@ -28,7 +31,7 @@ public class RemoteRepositoryMock extends RemoteRepositoryAbstract {
     private static final String[] DECKS =
             {SPANISH_FOR_BEGINNERS, SPANISH_FOR_ADVANCED,
                     ISRAEL_IMPORTANT_DATES, EUROPE_CAPITAL_CITIES,
-                    TBD1, TBD2, TBD3, TBD4, TBD5, TBD6, TBD7, TBD8};
+                    PSYCHOMETRIC_TEST, SOLAR_SYSTEM, CLASSIC_COMPOSERS, TBD4, TBD5, TBD6, TBD7, TBD8};
 
     @Override
     public ArrayList<DeckModel> GetAllDecks() {
@@ -115,6 +118,21 @@ public class RemoteRepositoryMock extends RemoteRepositoryAbstract {
                 cards.add(new CardModel(i++, "Slovakia", "Bratislava"));
                 cards.add(new CardModel(i++, "Kazakhstan", "Astana"));
                 break;
+
+            case PSYCHOMETRIC_TEST:
+                imageUrl = "https://cdn4.iconfinder.com/data/icons/ballicons-2-new-generation-of-flat-icons/100/brain-128.png";
+                break;
+
+            case SOLAR_SYSTEM:
+                imageUrl = "http://icons.iconarchive.com/icons/dan-wiersma/solar-system/256/Saturn-icon.png";
+                break;
+
+            case CLASSIC_COMPOSERS:
+                    imageUrl = "http://www.fluteworld.com/products/midifiles/play_music-icon.gif";
+                break;
+
+
+
         }
 
         DeckModel deck = new DeckModel(id, name, _bitmap, imageUrl);
