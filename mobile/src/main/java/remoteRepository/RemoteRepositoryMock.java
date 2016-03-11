@@ -1,14 +1,16 @@
 package remoteRepository;
 
+import android.content.Context;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 
+import com.squareup.picasso.Picasso;
+
+import java.io.IOException;
 import java.util.ArrayList;
 
 import models.CardModel;
 import models.DeckModel;
 import spaced.com.spaced.MyApp;
-import spaced.com.spaced.R;
 
 /**
  * Created by Ilya on 5/3/2016.
@@ -44,11 +46,27 @@ public class RemoteRepositoryMock extends RemoteRepositoryAbstract {
         return decks;
     }
 
+    Bitmap _bitmap;
     private DeckModel createDeck(String name, int id){
-        Bitmap bitmap = BitmapFactory.decodeResource(MyApp.getInstance().getContext().getResources(),
-                R.drawable.common_ic_googleplayservices);
-        DeckModel deck = new DeckModel(id, name, bitmap);
+
+        Runnable runnable = new Runnable() {
+            public void run() {
+                try {
+                    Context contx = MyApp.getContext().getApplicationContext();
+                    _bitmap = Picasso.with(contx).load("http://farm4.static.flickr.com/3114/2524849923_1c191ef42e.jpg").get();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        };
+        Thread thread = new Thread(runnable);
+        thread.start();
+
+//        Bitmap bitmap = BitmapFactory.decodeResource(MyApp.getInstance().getContext().getResources(),
+//                R.drawable.common_ic_googleplayservices);
+        DeckModel deck = new DeckModel(id, name, _bitmap);
         ArrayList<CardModel> cards = new ArrayList<>();
+
         deck.setCards(cards);
 
         int i = 0;
