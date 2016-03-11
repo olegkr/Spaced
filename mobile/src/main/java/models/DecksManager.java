@@ -46,6 +46,26 @@ public class DecksManager {
         return mLocalDecks;
     }
 
+    public DeckModel getRemoteDeckById(int id){
+        for (DeckModel deck : mRemoteDecks) {
+            if (deck.getDeckID() == id) {
+                return deck;
+            }
+        }
+
+        return null;
+    }
+
+    public DeckModel getLocalDeckById(int id){
+        for (DeckModel deck : mLocalDecks) {
+            if (deck.getDeckID() == id) {
+                return deck;
+            }
+        }
+
+        return null;
+    }
+
     public interface dataChangedListener{
         void notifyChange();
     }
