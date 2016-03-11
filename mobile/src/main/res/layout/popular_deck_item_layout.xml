@@ -31,6 +31,7 @@
                 android:layout_height="wrap_content"
                 android:text="New Text"
                 android:textSize="16sp"
+                android:paddingTop="10dp"
                 android:gravity="center_vertical"
                 android:textStyle="bold"
                 android:id="@+id/tVw_deck_name" />
@@ -38,7 +39,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:paddingTop="10dp"
+                android:paddingTop="5dp"
                 android:gravity="center_vertical"
                 android:textSize="14sp"
                 android:text="New Text"
@@ -48,22 +49,16 @@
 
         <LinearLayout
             android:orientation="vertical"
+            android:paddingTop="10dp"
             android:paddingRight="10dp"
             android:layout_width="50dp"
-            android:layout_height="match_parent">
+            android:layout_height="50dp">
 
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@android:drawable/ic_menu_add"
+                android:src="@drawable/downloading"
                 android:id="@+id/imVw_add" />
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:paddingTop="25dp"
-                android:src="@android:drawable/ic_menu_help"
-                android:id="@+id/imVw_what" />
 
         </LinearLayout>
     </LinearLayout>

@@ -137,7 +137,7 @@ public class MyDesksAdapter extends ArrayAdapter<DeckModel> implements View.OnCl
         iv_deck_image.setImageBitmap(bitmap);
         tv_deck_name.setText(deck_name);
         String quantity = String.valueOf(cards_in_deck);
-        tv_deck_card_qnt.setText(quantity);
+        tv_deck_card_qnt.setText(quantity + " Cards");
 
         return convertView;
     }
