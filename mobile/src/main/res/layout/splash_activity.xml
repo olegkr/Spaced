@@ -38,7 +38,7 @@
         android:id="@+id/firstCloud"
         android:layout_marginTop="20dp"
         android:layout_gravity="left"
-        android:layout_marginLeft="5dp"
+        android:layout_marginLeft="20dp"
         android:src="@drawable/cloud4_4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
