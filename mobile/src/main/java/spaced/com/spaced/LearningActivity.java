@@ -28,6 +28,8 @@ public class LearningActivity extends AppCompatActivity {
     TextView skipButton;
     TextView previousButton;
     TextView answerButton;
+    View navigationView;
+    View validationButtonsView;
 
     public final static String DECK_ID = "deckId";
     private DeckModel mDeck;
@@ -50,7 +52,9 @@ public class LearningActivity extends AppCompatActivity {
         answerTextView = (TextView) findViewById(R.id.answerTextView);
         image1 = (ImageView)findViewById(R.id.cardImage);
         image2 = (ImageView)findViewById(R.id.vintik);
+        navigationView = findViewById(R.id.navigationLayout);
         answerButton = (TextView) findViewById(R.id.showAnswerButton);
+        validationButtonsView = findViewById(R.id.validationButtons);
         Typeface font = Typeface.createFromAsset(getAssets(), "fonts/UbuntuCondensedRegular.ttf");
         skipButton = (TextView)findViewById(R.id.skipButton);
         previousButton = (TextView)findViewById(R.id.previousButton);
@@ -74,11 +78,19 @@ public class LearningActivity extends AppCompatActivity {
         skipButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (mDeck.getmCards().size() > cardIndex + 1) {
-                    mCurrentCard = mDeck.getmCards().get(++cardIndex);
-                    questionTextView.setText(mCurrentCard.getCardQuestion());
-                    setAppTitle();
-                }
+                nextCard();
+            }
+        });
+        findViewById(R.id.buttonCorrect).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                nextCard();
+            }
+        });
+        findViewById(R.id.buttonWrong).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                nextCard();
             }
         });
 
@@ -88,6 +100,8 @@ public class LearningActivity extends AppCompatActivity {
                 if (cardIndex > 0) {
                     mCurrentCard = mDeck.getmCards().get(--cardIndex);
                     questionTextView.setText(mCurrentCard.getCardQuestion());
+                    navigationView.setVisibility(View.VISIBLE);
+                    validationButtonsView.setVisibility(View.GONE);
                     setAppTitle();
                 }
             }
@@ -110,6 +124,8 @@ public class LearningActivity extends AppCompatActivity {
 
                     @Override
                     public void onAnimationEnd(Animation animation) {
+                        navigationView.setVisibility(View.GONE);
+                        validationButtonsView.setVisibility(View.VISIBLE);
                         image1.setVisibility(View.GONE);
                         image2.setVisibility(View.GONE);
                         answerTextView.setText(mCurrentCard.getCardAnswer());
@@ -122,6 +138,21 @@ public class LearningActivity extends AppCompatActivity {
                 imageContainer.startAnimation(animation);
             }
         });
+    }
+
+    private void nextCard(){
+        if (mDeck.getmCards().size() > cardIndex + 1) {
+            mCurrentCard = mDeck.getmCards().get(++cardIndex);
+            questionTextView.setText(mCurrentCard.getCardQuestion());
+
+            setAppTitle();
+            if(navigationView.getVisibility() == View.GONE) {
+                showQuestion();
+            }
+
+            navigationView.setVisibility(View.VISIBLE);
+            validationButtonsView.setVisibility(View.GONE);
+        }
     }
 
     private void showQuestion(){
