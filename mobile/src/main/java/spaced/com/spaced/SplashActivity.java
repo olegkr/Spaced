@@ -16,8 +16,8 @@ import android.view.animation.TranslateAnimation;
  */
 public class SplashActivity extends Activity {
 
-private static final int TARGET_DP = 600;
-private static final long TIME_TO_ANIMATE = 20000;
+private static final int TARGET_DP = 500;
+private static final long TIME_TO_ANIMATE = 10000;
 
     @Nullable
     @Override
@@ -34,17 +34,17 @@ private static final long TIME_TO_ANIMATE = 20000;
         View secondCloud = findViewById(R.id.secondCloud);
         View thirdsCloud = findViewById(R.id.thirdsCloud);
 
-        Animation animation = new TranslateAnimation(0, pxToDp(TARGET_DP) ,0, 0);
+        Animation animation = new TranslateAnimation(0, TARGET_DP / 2 ,0, 0);
         animation.setDuration(TIME_TO_ANIMATE);
         animation.setFillAfter(true);
         firstCloud.startAnimation(animation);
 
-        animation = new TranslateAnimation(pxToDp(TARGET_DP), 0 ,0, 0);
+        animation = new TranslateAnimation(0, TARGET_DP * -1 ,0, 0);
         animation.setDuration(TIME_TO_ANIMATE);
         animation.setFillAfter(true);
         secondCloud.startAnimation(animation);
 
-        animation = new TranslateAnimation(0, pxToDp(TARGET_DP) ,0, 0);
+        animation = new TranslateAnimation(0, TARGET_DP ,0, 0);
         animation.setDuration(TIME_TO_ANIMATE);
         animation.setFillAfter(true);
         thirdsCloud.startAnimation(animation);
