@@ -152,6 +152,9 @@ public class LearningActivity extends AppCompatActivity {
 
             navigationView.setVisibility(View.VISIBLE);
             validationButtonsView.setVisibility(View.GONE);
+        } else {
+            Intent intent = new Intent(this, CongratsActivity.class);
+            startActivity(intent);
         }
     }
 
