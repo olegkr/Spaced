@@ -23,4 +23,5 @@ public class Globals {
     public static final String KEY_CARD_QUESTION = "card_question";
     public static final String KEY_CARD_ANSWER = "card_answer";
 
+
 }

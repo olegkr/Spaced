@@ -1,6 +1,7 @@
 package adapters;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,6 +9,10 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.squareup.picasso.Picasso;
+import com.squareup.picasso.RequestCreator;
+
+import java.io.IOException;
 import java.util.ArrayList;
 
 import models.DeckModel;
@@ -33,19 +38,22 @@ public class PopularDecksViewAdapter extends RecyclerView.Adapter<PopularDecksVi
         public TextView mCountLabel;
 
         public ImageView mImVvAdd;
+        public ImageView mImVvDeck;
 
         public CustomViewHolder(final View v) {
             super(v);
 
             mTitleLabel = (TextView)v.findViewById(R.id.tVw_deck_name);
             mCountLabel = (TextView)v.findViewById(R.id.tVw_deck_card_quantity);
+            mImVvDeck = (ImageView)v.findViewById(R.id.imVw_deck);
             mImVvAdd = (ImageView)v.findViewById(R.id.imVw_add);
         }
 
         public void bindItem(DeckModel item) {
             mTitleLabel.setText(item.getDeckName());
             mCountLabel.setText(String.valueOf(item.getCardsQuantity()) + " " + context.getResources().getString(R.string.cards_num));
-            mImVvAdd.setImageBitmap(item.getDeckImage());
+            Bitmap b = item.getDeckImage();
+            mImVvDeck.setImageBitmap(b);
         }
     }
 
@@ -74,8 +82,7 @@ public class PopularDecksViewAdapter extends RecyclerView.Adapter<PopularDecksVi
                 DeckModel myDeck = data.get(position);
                 for (DeckModel remoteDeck :
                         remoteDecks) {
-                    if (remoteDeck.getDeckID() == myDeck.getDeckID())
-                    {
+                    if (remoteDeck.getDeckID() == myDeck.getDeckID()) {
                         remoteDecks.remove(remoteDeck);
                         data.remove(remoteDeck);
                         DecksManager.getInstance().getLocalDecks().add(remoteDeck);
@@ -95,6 +102,26 @@ public class PopularDecksViewAdapter extends RecyclerView.Adapter<PopularDecksVi
 //                view.getContext().startActivity(intent);
             }
         });
+
+        final RequestCreator load = Picasso.with(context).load("http://farm4.static.flickr.com/3114/2524849923_1c191ef42e.jpg");
+        load.into(holder.mImVvDeck);
+
+        Runnable runnable = new Runnable() {
+            public void run() {
+                try {
+                    try {
+                        data.get(position).setDeckImage(load.get());
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        };
+        Thread thread = new Thread(runnable);
+        thread.start();
+
     }
 
     @Override

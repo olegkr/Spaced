@@ -1,5 +1,7 @@
 package spaced.com.spaced;
 
+import android.content.Context;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
@@ -10,6 +12,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 
+import com.squareup.picasso.Picasso;
+
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,6 +35,7 @@ public class MainScreenActivity extends AppCompatActivity {
 
     private View view;
 //    FloatingActionButton mFlBtn;
+    Bitmap bitmap;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +58,24 @@ public class MainScreenActivity extends AppCompatActivity {
 
         mTabLayout = (TabLayout) findViewById(R.id.tabs);
         mTabLayout.setupWithViewPager(mViewPager);
+
+        initBitList();
+    }
+
+    private void initBitList() {
+        Runnable runnable = new Runnable() {
+            public void run() {
+                try {
+                    Context contx = MyApp.getContext().getApplicationContext();
+                    bitmap = Picasso.with(contx).load("http://farm4.static.flickr.com/3114/2524849923_1c191ef42e.jpg").get();
+
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        };
+        Thread thread = new Thread(runnable);
+        thread.start();
     }
 
     private void setupViewPager(ViewPager viewPager) {
