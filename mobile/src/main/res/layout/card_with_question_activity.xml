@@ -19,64 +19,117 @@
         </android.support.design.widget.AppBarLayout>
 
         <TextView
-            android:id="@+id/deckName"
-            android:layout_below="@id/appBar"
-            android:text="test"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            android:gravity="center_horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="40dp" />
-
-        <TextView
             android:id="@+id/questionText"
-            android:layout_below="@id/deckName"
-            android:text="test"
+            android:textColor="#03A9F4"
+            android:text="test\ntest"
             android:textSize="24sp"
             android:textStyle="bold"
+            android:layout_marginTop="30dp"
+            android:layout_marginBottom="10dp"
             android:gravity="center_horizontal"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:layout_below="@id/appBar" />
+
+        <FrameLayout
+            android:id="@+id/imageLayoutView"
+            android:layout_centerInParent="true"
+            android:paddingBottom="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
         
-        <ImageView
-            android:id="@+id/cardImage"
-            android:layout_below="@id/questionText"
-            android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:layout_above="@+id/navigationLayout" />
+            <ImageView
+                android:id="@+id/cardImage"
+                android:src="@drawable/shesterenok_aharon"
+                android:layout_width="358dp"
+                android:layout_height="310dp"
+                 />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/vintik"
+                android:src="@drawable/vintik_sini_4"
+                android:layout_gravity="center"
+                android:layout_marginBottom="60dp"
+                android:layout_centerHorizontal="true"
+                 />
+
+            <TextView
+                android:id="@+id/answerTextView"
+                android:textSize="32sp"
+                android:gravity="center"
+                android:layout_gravity="center"
+                android:visibility="gone"
+                android:paddingLeft="20dp"
+                android:textColor="#03A9F4"
+                android:textStyle="bold"
+                android:paddingRight="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="test answer" />
+
+        </FrameLayout>
 
         <RelativeLayout
             android:id="@+id/navigationLayout"
-            android:layout_above="@+id/showAnswerButton"
+            android:layout_alignParentBottom="true"
             android:gravity="center_vertical"
-            android:paddingLeft="10dp"
-            android:paddingRight="10dp"
+            android:paddingLeft="30dp"
+            android:paddingRight="30dp"
+            android:layout_marginBottom="20dp"
             android:layout_width="match_parent"
-            android:layout_height="60dp">
+            android:layout_height="40dp">
+
+            <TextView
+                android:textColor="#03A9F4"
+                android:id="@+id/showAnswerButton"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:gravity="bottom"
+                android:text="Show Answer"
+                android:textStyle="bold"
+                android:textSize="26sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
 
             <TextView
                 android:text="PREVIOUS"
+                android:textColor="#03A9F4"
+                android:gravity="bottom"
                 android:layout_alignParentLeft="true"
+                android:layout_alignParentBottom="true"
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent" />
+                android:layout_height="match_parent"
+                android:id="@+id/previousButton" />
 
             <TextView
                 android:text="SKIP"
+                android:textColor="#03A9F4"
+                android:gravity="bottom"
                 android:layout_alignParentRight="true"
+                android:layout_alignParentBottom="true"
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent" />
+                android:layout_height="match_parent"
+                android:id="@+id/skipButton" />
 
         </RelativeLayout>
 
-        <Button
-            android:layout_alignParentBottom="true"
-            android:id="@+id/showAnswerButton"
-            android:text="Show Answer"
-            android:textSize="18sp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:layout_width="match_parent"
-            android:layout_height="60dp" />
+        <!--<ImageView-->
+            <!--android:layout_alignParentBottom="true"-->
+            <!--android:id="@+id/showAnswerButton"-->
+            <!--android:text="Show Answer"-->
+            <!--android:src="@drawable/show_answer_4"-->
+            <!--android:textSize="18sp"-->
+            <!--android:layout_marginLeft="20dp"-->
+            <!--android:layout_marginBottom="20dp"-->
+            <!--android:layout_marginRight="20dp"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="60dp" />-->
+
+
+
+
 
     </RelativeLayout>
 
