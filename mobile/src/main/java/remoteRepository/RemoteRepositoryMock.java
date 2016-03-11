@@ -1,9 +1,14 @@
 package remoteRepository;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+
 import java.util.ArrayList;
 
 import models.CardModel;
 import models.DeckModel;
+import spaced.com.spaced.MyApp;
+import spaced.com.spaced.R;
 
 /**
  * Created by Ilya on 5/3/2016.
@@ -40,8 +45,9 @@ public class RemoteRepositoryMock extends RemoteRepositoryAbstract {
     }
 
     private DeckModel createDeck(String name, int id){
-
-        DeckModel deck = new DeckModel(id, name, null);
+        Bitmap bitmap = BitmapFactory.decodeResource(MyApp.getInstance().getContext().getResources(),
+                R.drawable.common_ic_googleplayservices);
+        DeckModel deck = new DeckModel(id, name, bitmap);
         ArrayList<CardModel> cards = new ArrayList<>();
         deck.setCards(cards);
 
