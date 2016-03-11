@@ -25,7 +25,7 @@ public class LocalRepositoryMock extends RemoteRepositoryAbstract {
     }
 
     public DeckModel createDeck(String name, int id){
-        DeckModel deck = new DeckModel(id, name, null);
+        DeckModel deck = new DeckModel(id, name, null, null);
         ArrayList<CardModel> cards = new ArrayList<>();
         deck.setCards(cards);
 

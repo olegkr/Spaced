@@ -103,7 +103,7 @@ public class PopularDecksViewAdapter extends RecyclerView.Adapter<PopularDecksVi
             }
         });
 
-        final RequestCreator load = Picasso.with(context).load("http://farm4.static.flickr.com/3114/2524849923_1c191ef42e.jpg");
+        final RequestCreator load = Picasso.with(context).load(data.get(position).getImageUrl());
         load.into(holder.mImVvDeck);
 
         Runnable runnable = new Runnable() {

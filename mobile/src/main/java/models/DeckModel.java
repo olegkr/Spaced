@@ -12,26 +12,14 @@ public class DeckModel {
     private int mDeckID;
     private String mDeckName;
     private Bitmap mDeckImage;
+    private String imageUrl;
     private ArrayList<CardModel> mCards = new ArrayList<>();
 
-    public DeckModel(int deckID, String deckName, final Bitmap deckImage) {
+    public DeckModel(int deckID, String deckName, final Bitmap deckImage, String imageUrl) {
         this.mDeckID = deckID;
         this.mDeckName = deckName;
-//        this.mDeckImage = deckImage;
-//        Runnable runnable = new Runnable() {
-//            public void run() {
-//                try {
-//                    Context contx = MyApp.getContext().getApplicationContext();
-//                    bitmap = Picasso.with(contx).load("http://farm4.static.flickr.com/3114/2524849923_1c191ef42e.jpg").get();
-//                } catch (IOException e) {
-//                    e.printStackTrace();
-//                }
-//            }
-//        };
-//        Thread thread = new Thread(runnable);
-//        thread.start();
-
         this.mDeckImage = deckImage;
+        this.imageUrl = imageUrl;
     }
 
     public int getDeckID() {
@@ -68,5 +56,9 @@ public class DeckModel {
 
     public void setCards(ArrayList<CardModel> mCards) {
         this.mCards = mCards;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
     }
 }

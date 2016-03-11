@@ -34,7 +34,7 @@
 
     <ImageView
         android:src="@drawable/filin_4"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="30dp"
         android:layout_marginLeft="80dp"
         android:layout_marginRight="80dp"
         android:layout_gravity="center|center_vertical"
@@ -53,6 +53,6 @@
         android:textColor="#03A9F4"
         android:layout_gravity="center_horizontal"
         android:gravity="center"
-        android:layout_marginTop="50dp" />
+        android:layout_marginTop="30dp" />
 
 </LinearLayout>

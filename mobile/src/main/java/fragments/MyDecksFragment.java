@@ -130,7 +130,7 @@ public class MyDecksFragment extends Fragment implements AbsListView.OnScrollLis
             Bitmap image = bundle.getParcelable("deck_image");
             LogUtil.d("image: " + image);
 
-            mDeckModel = new DeckModel(id, name, image);
+            mDeckModel = new DeckModel(id, name, image, null);
 
             ArrayList<DeckModel> list = addDeck(mDeckModel);
 

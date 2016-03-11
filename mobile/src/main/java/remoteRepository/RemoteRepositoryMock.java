@@ -1,16 +1,11 @@
 package remoteRepository;
 
-import android.content.Context;
 import android.graphics.Bitmap;
 
-import com.squareup.picasso.Picasso;
-
-import java.io.IOException;
 import java.util.ArrayList;
 
 import models.CardModel;
 import models.DeckModel;
-import spaced.com.spaced.MyApp;
 
 /**
  * Created by Ilya on 5/3/2016.
@@ -49,30 +44,14 @@ public class RemoteRepositoryMock extends RemoteRepositoryAbstract {
     Bitmap _bitmap;
     private DeckModel createDeck(String name, int id){
 
-        Runnable runnable = new Runnable() {
-            public void run() {
-                try {
-                    Context contx = MyApp.getContext().getApplicationContext();
-                    _bitmap = Picasso.with(contx).load("http://farm4.static.flickr.com/3114/2524849923_1c191ef42e.jpg").get();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-        };
-        Thread thread = new Thread(runnable);
-        thread.start();
-
-//        Bitmap bitmap = BitmapFactory.decodeResource(MyApp.getInstance().getContext().getResources(),
-//                R.drawable.common_ic_googleplayservices);
-        DeckModel deck = new DeckModel(id, name, _bitmap);
         ArrayList<CardModel> cards = new ArrayList<>();
 
-        deck.setCards(cards);
-
         int i = 0;
+        String imageUrl = "http://eagle.phys.utk.edu/guidry/android/figs/androidLogos/free-large-android256.jpg";
 
         switch (name) {
             case SPANISH_FOR_BEGINNERS:
+                imageUrl = "http://www.ceelechile.org/images/Spain%20Flag.png";
                 cards.add(new CardModel(i++, "Good morning", "Buenos días"));
                 cards.add(new CardModel(i++, "Good afternoon", "Buenas tardes"));
                 cards.add(new CardModel(i++, "Good evening", "Buenas noches"));
@@ -90,6 +69,7 @@ public class RemoteRepositoryMock extends RemoteRepositoryAbstract {
                 break;
 
             case SPANISH_FOR_ADVANCED:
+                imageUrl = "http://www.ceelechile.org/images/Spain%20Flag.png";
                 cards.add(new CardModel(i++, "Similar", "Semejante"));
                 cards.add(new CardModel(i++, "Available", "Dispuesto"));
                 cards.add(new CardModel(i++, "Strike", "Huelga"));
@@ -103,6 +83,7 @@ public class RemoteRepositoryMock extends RemoteRepositoryAbstract {
                 break;
 
             case ISRAEL_IMPORTANT_DATES:
+                imageUrl = "https://myimeiunlock.com/wp-content/uploads/2012/10/Israel-iPhone-IMEI-Factory-Unlock.png";
                 cards.add(new CardModel(i++, "Theodor Herzl had formed a Zionist Movement", "1 Jan 1880"));
                 cards.add(new CardModel(i++, "TLV Android Academy meetup foundation date", "15 March 2014"));
                 cards.add(new CardModel(i++, "The British took control of Palestine", "11 Nov 1918"));
@@ -117,6 +98,7 @@ public class RemoteRepositoryMock extends RemoteRepositoryAbstract {
                 break;
 
             case EUROPE_CAPITAL_CITIES:
+                imageUrl = "https://professionalxen.com/minecraft/img/slide/servers/euicon.gif";
                 cards.add(new CardModel(i++, "Macedonia", "Skopje"));
                 cards.add(new CardModel(i++, "Malta", "Valletta"));
                 cards.add(new CardModel(i++, "Montenegro", "Podgorica"));
@@ -134,6 +116,9 @@ public class RemoteRepositoryMock extends RemoteRepositoryAbstract {
                 cards.add(new CardModel(i++, "Kazakhstan", "Astana"));
                 break;
         }
+
+        DeckModel deck = new DeckModel(id, name, _bitmap, imageUrl);
+        deck.setCards(cards);
 
         return deck;
 
